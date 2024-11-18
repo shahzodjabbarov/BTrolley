@@ -1,0 +1,3 @@
+ultralytics==8.0.0  # YOLOv8 package
+opencv-python==4.7.0.72  # OpenCV for computer vision tasks
+numpy==1.24.0  # For handling numerical operations like distance calculation
