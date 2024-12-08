@@ -3,33 +3,19 @@ import cv2
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 import time
-from geometry_msgs.msg import Twist
-import rospy
 
 from pathlib import Path  
 script_dir = Path(__file__).resolve().parent
-# video_path = script_dir / 'video3.mp4'
-# video_path = 'IMG_8290.mp4'
-video_path = 'video.mp4'
-
+video_path = script_dir / 'video3.mp4'
 # Initialize YOLO model
 model = YOLO('yolov8n.pt')
-
 cap = cv2.VideoCapture(video_path)
 
-# Define the codec and create VideoWriter object
-fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Changed from 'XVID' to 'mp4v'
-out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))  # Changed output extension to .mp4
-
 if not cap.isOpened():
-    print("[ERROR] Could not open video or webcam.")
+    print("[ERROR] Could not open webcam.")
     exit()
 
 print("[INFO] Starting Btrolley detection. Press 'q' to quit.")
-
-# Initialize ROS node
-rospy.init_node('btrolley_tracker')
-cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
 
 # Initialization variables
 subject_id = None
@@ -69,25 +55,6 @@ def calculate_iou(bbox1, bbox2):
 
     return inter_area / union_area if union_area > 0 else 0
 
-def move_turtlebot(bbox, frame_center):
-    x1, y1, x2, y2 = bbox
-    person_center_x = (x1 + x2) // 2
-    frame_center_x, frame_center_y = frame_center
-
-    twist = Twist()
-    error_x = person_center_x - frame_center_x
-
-    # Adjust angular velocity based on the horizontal error
-    twist.angular.z = -0.002 * error_x
-
-    # Adjust linear velocity based on the distance from the center
-    if abs(error_x) < 50:
-        twist.linear.x = 0.2  # Move forward
-    else:
-        twist.linear.x = 0.0  # Stop moving forward if the subject is not centered
-
-    cmd_vel_pub.publish(twist)
-
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -120,7 +87,7 @@ while True:
             init_start_time = time.time()
         
         # Wait for 5 seconds before choosing the subject
-        if time.time() - init_start_time >= 1:
+        if time.time() - init_start_time >= 5:
             closest_person = None
             min_distance = float('inf')
 
@@ -175,7 +142,6 @@ while True:
         bbox = tracked_objects[subject_id]['bbox']
         cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 2)
         cv2.putText(frame, "Subject", (bbox[0], bbox[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
-        move_turtlebot(bbox, frame_center)  # Move TurtleBot based on subject's position
 
     for track_id, track_data in tracked_objects.items():
         if track_id != subject_id:
@@ -184,12 +150,9 @@ while True:
             cv2.putText(frame, f"ID {track_id}", (bbox[0], bbox[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
 
     cv2.imshow("Btrolley Detection", frame)
-    out.write(frame)  # Write the frame to the output video
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 cap.release()
-out.release()  # Release the VideoWriter object
 cv2.destroyAllWindows()
-rospy.signal_shutdown('Tracking finished')
