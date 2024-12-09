@@ -25,7 +25,7 @@ The **Smart Trolley System** is a computer vision-based project designed to trac
 ## 📂 File Structure
 ```plaintext
 ├── smart_trolley/
-│   ├── main.py                # Core script for the smart trolley functionality
+│   ├── main4.py                # Core script for the smart trolley functionality
 │   ├── requirements.txt       # List of dependencies
 │   ├── video3.mp4             # Test video file
 │   ├── README.md              # Project documentation
