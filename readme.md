@@ -31,7 +31,6 @@ The **Smart Trolley System** is a computer vision-based project designed to trac
 │   ├── README.md              # Project documentation
 └── ...
 
-* Google Drive Folder: https://drive.google.com/drive/folders/1iK7ix4OvUB72aQc94lEAcuEeP7qXb_QQ
 
 🖥️ How It Works
 
@@ -72,3 +71,5 @@ Frame Skipping: Processes every 4th frame to balance performance and accuracy.
 
 Frames per Second (FPS): The system processes approximately X FPS depending on the hardware.
 Optimization Strategies: Frame skipping and IoU-based cost minimization ensure real-time processing.
+* Google Drive Folder For Videos: https://drive.google.com/drive/folders/1xQtF1-Vwg8Pz7xHE3nHaSexEY7Hudigg?usp=sharing
+* Google Drive Folder: https://drive.google.com/drive/folders/1iK7ix4OvUB72aQc94lEAcuEeP7qXb_QQ
