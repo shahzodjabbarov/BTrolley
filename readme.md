@@ -9,7 +9,11 @@ The **Smart Trolley System** is a computer vision-based project designed to trac
 - **Person Tracking:** Tracks the selected subject using the Intersection over Union (IoU) metric and the Hungarian Algorithm for optimal matching.
 - **Subject Identification:** Automatically selects the closest person to the center of the frame as the subject after a 5-second initialization phase.
 - **Re-identification (Re-ID):** Reassociates lost or unmatched detections to maintain subject tracking.
-- **Optimized Performance:** Skips frames and uses efficient algorithms to ensure smooth real-time processing.
+- **Optimized Performance:** Skips frames and uses efficient algorithms to ensure smooth real-time processing.    
+### Trolley movement     
+- The movement of the trolley is dynamically controlled based on the subject's location within the video frame. The functionality includes the following features:
+- **Zone-based Tracking:** The frame is divided into three distinct zones: left, center, and right. The subject's position within these zones determines the trolley's movement. If the subject moves into the left or right zone, the trolley adjusts its direction to follow. When the subject is in the center zone, the trolley continues straight.
+- **Proximity Control:** To ensure safety, the system monitors the distance between the trolley and the subject. If the subject moves too close (within a predefined distance threshold), the trolley automatically stops to prevent collisions.
 
 ---
 
