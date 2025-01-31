@@ -1,7 +1,8 @@
 # BUDDY-TROLLEY - Smart Trolley System
 
 The **Smart Trolley System** is a computer vision-based project designed to track and follow a specific person in real-time. This innovative solution leverages object detection and tracking technologies to enhance the shopping experience, making it easier for customers to shop hands-free while the trolley follows them.
-videos/IMG_8654-2.mp4
+
+BTrolley/videos/IMG_8654-2.gif
 ---
 
 ## 🚀 Features
