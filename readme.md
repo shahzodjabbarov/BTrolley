@@ -2,8 +2,6 @@
 
 The **Smart Trolley System** is a computer vision-based project designed to track and follow a specific person in real-time. This innovative solution leverages object detection and tracking technologies to enhance the shopping experience, making it easier for customers to shop hands-free while the trolley follows them.
 
-https://github.com/user-attachments/assets/dc21c6f8-4179-4b55-af62-695ab0755f8f
-
 ![Alt Text](https://github.com/shahzodjabbarov/BTrolley/blob/main/videos/output1.gif)
 ---
 
