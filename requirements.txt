@@ -3,4 +3,4 @@ opencv-python==4.8.0.74
 opencv-contrib-python==4.8.0.74  # Includes additional OpenCV modules
 numpy==1.23.5
 scipy==1.11.2
-torch==2.0.1  # Make sure it matches your system and CUDA version
+torch==2.13.0  # Make sure it matches your system and CUDA version
