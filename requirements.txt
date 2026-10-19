@@ -1,6 +1,6 @@
 ultralytics==8.0.0  # Adjust to match the YOLO version you installed
 opencv-python==4.8.0.74
-opencv-contrib-python==4.8.0.74  # Includes additional OpenCV modules
+opencv-contrib-python==4.8.1.78  # Includes additional OpenCV modules
 numpy==1.23.5
 scipy==1.11.2
 torch==2.0.1  # Make sure it matches your system and CUDA version
